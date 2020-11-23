@@ -79,7 +79,7 @@ public class Sim extends CordovaPlugin {
       Integer activeSubscriptionInfoCount = null;
       Integer activeSubscriptionInfoCountMax = null;
    Log.i(LOG_TAG, "rupendra-1");
-           
+
       try {
         // TelephonyManager.getPhoneCount() requires API 23
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -104,11 +104,11 @@ public class Sim extends CordovaPlugin {
               int dataRoaming = subscriptionInfo.getDataRoaming();  // 1 is enabled ; 0 is disabled
               CharSequence displayName = subscriptionInfo.getDisplayName();
               String iccId = "";
-              
-              if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+
+              if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.P) {
                 iccId = subscriptionInfo.getIccId();
               }
-              
+
               int mcc = subscriptionInfo.getMcc();
               int mnc = subscriptionInfo.getMnc();
               String number = subscriptionInfo.getNumber();
@@ -119,7 +119,7 @@ public class Sim extends CordovaPlugin {
  Log.i(LOG_TAG, "rupendra-6");
               String deviceId = null;
               // TelephonyManager.getDeviceId(slotId) requires API 23
-              if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+              if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.P) {
                 deviceId = manager.getDeviceId(simSlotIndex);
               }
 
@@ -178,7 +178,7 @@ Log.i(LOG_TAG, "rupendra-9-6");
         Log.i(LOG_TAG, "rupendra-9-7");
         phoneNumber = manager.getLine1Number();
           Log.i(LOG_TAG, "rupendra-9-8");
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.P) {
           Log.i(LOG_TAG, "rupendra-9-9");
            deviceId = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
         }else{
@@ -188,12 +188,12 @@ Log.i(LOG_TAG, "rupendra-9-6");
         Log.i(LOG_TAG, "rupendra-9-11");
         deviceSoftwareVersion = manager.getDeviceSoftwareVersion();
         Log.i(LOG_TAG, "rupendra-9-12");
-         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+         if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.P) {
           simSerialNumber = manager.getSimSerialNumber();
             Log.i(LOG_TAG, "rupendra-9-13");
         subscriberId = manager.getSubscriberId();
          }
-       
+
         Log.i(LOG_TAG, "rupendra-9-14");
       }
  Log.i(LOG_TAG, "rupendra-10");
